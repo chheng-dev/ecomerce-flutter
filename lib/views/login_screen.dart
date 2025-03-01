@@ -1,7 +1,7 @@
 import 'package:ecomerce_app/constants/theme_constants.dart';
+import 'package:ecomerce_app/controllers/login_controller.dart';
 import 'package:ecomerce_app/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,26 +12,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-   final _formKey = GlobalKey<FormState>();
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-
-
-  void _submitForm(){
-    if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Successful!')),
-      );
-    }
-  }
-
+  final LoginController _controller = LoginController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
-        title: Icon(Icons.arrow_back_ios),
+        // centerTitle: false,
+        // title: Icon(Icons.arrow_back_ios),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,31 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFieldWidget(
                   hintText: "Email",
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value){
-                    if(value == null || value.isEmpty){
-                      return "Please enter your email";
-                    } else if (!value.contains('@')){
-                      return "Please enter a valid email";
-                    }
-                    return null;
-                  },
+                  controller: _controller.emailController,
+                  keyboardType: TextInputType.emailAddress
                 ),
                 SizedBox(height: ConfigConstants.sizebox0),
                 TextFieldWidget(
                   hintText: "Password",
-                  controller: _passwordController,
-                  validator: (value){
-                    print("hi");
-                    print(value);
-                    if(value == null || value.isEmpty){
-                      return "Please enter your password";
-                    } else if (value.length > 8){
-                      return "Password must be at last 8";
-                    }
-                    return null;
-                  },
+                  controller: _controller.passwordController,
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                 ),
@@ -90,11 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Forgot Password?')),
-                          );
-                        },
+                        onPressed: () => Navigator.pushReplacementNamed(context, "/forgot-password"),
                         child: Text(
                           "Forgot password",
                           style: TextStyle(color: Colors.black),
@@ -113,11 +79,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
                       elevation: 0,
                       backgroundColor: AppColors.primaryColor
                     ),
-                    onPressed: _submitForm, 
+                    onPressed:() => _controller.login(context), 
                     child: Text(
                       "LOGIN", 
                       style: TextStyle(color: Colors.white),

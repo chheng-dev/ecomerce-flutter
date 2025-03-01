@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -58,4 +56,5 @@ class ConfigConstants {
 
   static const double sizebox3  = 32.0;
 
+  static const double sizebox4  = 43.0;
 }
