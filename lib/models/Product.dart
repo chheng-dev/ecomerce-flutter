@@ -5,6 +5,7 @@ class Product {
   final double discountPercentage;
   final String thumbnail;
   final double rating;
+  final DateTime createdAt;
 
   Product({
     required this.title, 
@@ -12,7 +13,8 @@ class Product {
     required this.brand,
     required this.discountPercentage,
     required this.thumbnail,
-    required this.rating
+    required this.rating,
+    required this.createdAt
   });
 
   // Factory constructor to create Product from JSON
@@ -23,7 +25,8 @@ class Product {
       brand: json['brand'],
       discountPercentage: json['discountPercentage'].toDouble(),
       thumbnail: json['thumbnail'],
-      rating: json['rating']
+      rating: json['rating'],
+      createdAt: DateTime.parse(json['meta']['createdAt']),
     );
   }
 }

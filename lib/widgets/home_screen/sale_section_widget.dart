@@ -4,7 +4,6 @@ import 'package:ecomerce_app/models/Product.dart';
 import 'package:ecomerce_app/widgets/cart_item_widget.dart';
 import 'package:ecomerce_app/widgets/header_section_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:skeleton_loader/skeleton_loader.dart';
 
 class SaleSectionWidget extends StatelessWidget {
   SaleSectionWidget({super.key});

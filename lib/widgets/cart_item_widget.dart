@@ -5,19 +5,27 @@ class CartItemWidget extends StatelessWidget {
   final String title;
   final double price;
   final String brand;
-  final double discountPercentage;
+  final double? discountPercentage;
   final String thumbnail;
   final double rating;
+  final String? status;
 
   const CartItemWidget({
-    super.key, required this.title, required this.price, required this.brand, required this.discountPercentage, required this.thumbnail, required this.rating
+    super.key, 
+    required this.title, 
+    required this.price, 
+    required this.brand, 
+    required this.thumbnail, 
+    required this.rating,
+    this.discountPercentage = 0,
+    this.status
   });
 
   double _fullPriceBeforeDiscount(){
     // price = 80 
     // dis = 20%
     // full_price = 80 / ( 1 - 20/100)
-    return price / (1 - (discountPercentage / 100));
+    return price / (1 - (discountPercentage! / 100));
   }
 
   int _getFullStars(){
@@ -59,21 +67,55 @@ class CartItemWidget extends StatelessWidget {
               Positioned(
                 top: 10,
                 left: 10,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor, // Background color for the text
-                    borderRadius: BorderRadius.circular(14), // Rounded corners
-                  ),
-                  child: Text(
-                    "${discountPercentage}%",
-                    style: TextStyle(
-                      color: Colors.white, // Text color
-                      fontSize: ConfigConstants.fontSize0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                child: Column(
+                  children: [
+                    if (discountPercentage is num && discountPercentage! > 0)
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              AppColors
+                                  .primaryColor, // Background color for the text
+                          borderRadius: BorderRadius.circular(
+                            14,
+                          ), // Rounded corners
+                        ),
+                        child: Text(
+                          "${discountPercentage}%",
+                          style: TextStyle(
+                            color: Colors.white, // Text color
+                            fontSize: ConfigConstants.fontSize0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    
+                    if (status is String)
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.black54,
+                          borderRadius: BorderRadius.circular(
+                            14,
+                          ), // Rounded corners
+                        ),
+                        child: Text(
+                          status!,
+                          style: TextStyle(
+                            color: Colors.white, // Text color
+                            fontSize: ConfigConstants.fontSize0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                  ],
+                )
               ),
             ],
           ),

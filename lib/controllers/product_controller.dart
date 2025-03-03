@@ -7,4 +7,8 @@ class ProductController {
   Future<List<Product>> getProducts() async {
     return await _productService.fetchProducts();
   }
+
+  Future<List<Product>> filterProductByCreatedAt() async {
+    return await _productService.fetchProductByCreatedAt();
+  }
 }
