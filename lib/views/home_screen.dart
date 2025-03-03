@@ -1,4 +1,6 @@
 import 'package:ecomerce_app/widgets/home_screen/banner_widget.dart';
+import 'package:ecomerce_app/widgets/home_screen/new_section_widget.dart';
+import 'package:ecomerce_app/widgets/home_screen/sale_section_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,9 +8,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
       children: [
-        BannerWidget()
+        Container(
+          child: Column(
+            children: [
+              BannerWidget(),
+              SaleSectionWidget(),
+              NewSectionWidget(),
+            ],
+          ),
+        )
       ],
     );
   }

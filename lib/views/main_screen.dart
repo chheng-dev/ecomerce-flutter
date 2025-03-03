@@ -34,13 +34,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              child: _pages[_selectedIndex],
-            )
-          ],
-        )
+        child:  Container(
+          child: _pages[_selectedIndex],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
