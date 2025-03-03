@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppColors.primaryColor,
         scaffoldBackgroundColor: AppColors.backgroundColor,
+        fontFamily: "Roboto_Condensed",
         textTheme: TextTheme(
           headlineMedium: AppTextStyles.headerStyle
         ),
