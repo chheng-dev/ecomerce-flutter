@@ -27,6 +27,13 @@ class ShopScreen extends StatelessWidget {
             "Categories",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search),
+              tooltip: 'Search',
+              onPressed: () {},
+            ), 
+          ],
           bottom: TabBar(
             indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
             padding: EdgeInsets.zero,
