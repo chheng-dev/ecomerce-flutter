@@ -13,10 +13,11 @@ class HeaderSectionWidget extends StatelessWidget {
     return  Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded( // Wrap ListTile with Expanded to avoid overflow issues
+        Expanded( 
           child: ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 8),
             title: Text(
-              '$title',  // Correct string interpolation
+              '$title',  
               style: TextStyle(
                 fontSize: ConfigConstants.fontSize3,
                 fontWeight: FontWeight.bold,

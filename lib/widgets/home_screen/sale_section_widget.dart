@@ -14,7 +14,7 @@ class SaleSectionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.all(8.0), // Added padding for better UI spacing
+      padding: const EdgeInsets.all(16.0), // Added padding for better UI spacing
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start, // Align children to the start
         children: [

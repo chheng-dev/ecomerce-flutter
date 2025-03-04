@@ -5,6 +5,7 @@ class AppColors {
   static const Color secondaryColor = Color(0xFF673AB7);
   static const Color backgroundColor = Color(0xFFF5F5F5);
   static const Color errorColor = Colors.orange;
+  static const Color blackColor = Colors.black87;
 }
 
 class AppTextStyles {
@@ -29,6 +30,14 @@ class ConfigConstants {
   static const double margin2 = 24.0;
 
   static const double margin3 = 32.0;
+
+  static const double padding0 = 12.0;
+
+  static const double padding1 = 16.0;
+
+  static const double padding2 = 24.0;
+
+  static const double padding3 = 32.0;
 
   static const double iconSize0 = 12.0;
 
