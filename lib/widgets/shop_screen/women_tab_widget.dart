@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class WomenTabWidget extends StatelessWidget {
   WomenTabWidget({super.key});
 
-  final List<Map<String, String>> categoryMianList = [
+  final List<Map<String, String>> womenCategoryMianList = [
     {
       "title": "New",
       "image_url": "https://www.boden.com/cdn/shop/files/1470806_SS25_FEB_WK05_SHIRTS_WW_PLP_M_HERO.jpg?v=1738142928&width=1420"
@@ -26,6 +26,19 @@ class WomenTabWidget extends StatelessWidget {
     },
   ];
 
+  List<String> womenShoppingCategories = [
+    'Clothing',
+    'Footwear',
+    'Accessories',
+    'Beauty',
+    'Activewear',
+    'Lingerie',
+    'Outerwear',
+    'Swimwear',
+    'Home',
+    'Tech & Gadgets',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +48,6 @@ class WomenTabWidget extends StatelessWidget {
       ),
       child: ListView(
         children: [
-
           // Summer sales
           Container(
             alignment: Alignment.center,
@@ -70,9 +82,9 @@ class WomenTabWidget extends StatelessWidget {
           ListView.builder(
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
-            itemCount: categoryMianList.length,
+            itemCount: womenCategoryMianList.length,
             itemBuilder: (context, index) {
-              final category = categoryMianList[index];
+              final category = womenCategoryMianList[index];
               final title = category["title"]!;
               final image_url = category["image_url"]!;
 
@@ -89,7 +101,7 @@ class WomenTabWidget extends StatelessWidget {
           ),
           SizedBox(height: ConfigConstants.sizebox1),
           // List Categories
-          ListCategoriesWidget(),
+          ListCategoriesWidget(categories: womenShoppingCategories),
         ],
       ),
     );

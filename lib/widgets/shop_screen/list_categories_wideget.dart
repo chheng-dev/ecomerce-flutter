@@ -2,20 +2,8 @@ import 'package:ecomerce_app/constants/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class ListCategoriesWidget extends StatelessWidget {
-  ListCategoriesWidget({super.key});
-
-   List<String> womenShoppingCategories = [
-    'Clothing',
-    'Footwear',
-    'Accessories',
-    'Beauty',
-    'Activewear',
-    'Lingerie',
-    'Outerwear',
-    'Swimwear',
-    'Home',
-    'Tech & Gadgets',
-  ];
+  final List<String> categories;
+  const ListCategoriesWidget({super.key, required this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +20,9 @@ class ListCategoriesWidget extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: BouncingScrollPhysics(),
-            itemCount: womenShoppingCategories.length,
+            itemCount: categories.length,
             itemBuilder:(context, index){
-              final category = womenShoppingCategories[index];
+              final category = categories[index];
               return Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(
