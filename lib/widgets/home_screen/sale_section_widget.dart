@@ -3,6 +3,7 @@ import 'package:ecomerce_app/controllers/product_controller.dart';
 import 'package:ecomerce_app/models/Product.dart';
 import 'package:ecomerce_app/widgets/cart_item_widget.dart';
 import 'package:ecomerce_app/widgets/header_section_widget.dart';
+import 'package:ecomerce_app/widgets/skeleton_loader_widget.dart';
 import 'package:flutter/material.dart';
 
 class SaleSectionWidget extends StatelessWidget {
@@ -29,29 +30,15 @@ class SaleSectionWidget extends StatelessWidget {
             child: FutureBuilder<List<Product>>(
               future: _controller.getProducts(), 
               builder: (context, snapshot){
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-    // Show skeleton loader while waiting for data
-                    // return SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal, // Allow scrolling if the content overflows
-                    //   child: Row(
-                    //     children: List.generate(5, (index) {
-                    //       return Padding(
-                    //         padding: const EdgeInsets.all(8.0), // Padding between skeleton items
-                    //         child: SkeletonLoader(
-                    //           builder: Container(
-                    //             color: Colors.red, // Skeleton background color
-                    //             width: 100, // Width of the skeleton
-                    //             height: 150, // Height of the skeleton
-                    //           ),
-                    //         ),
-                    //       );
-                    //     }),
-                    //   ),
-                    // );
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 5,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder:
+                        (context, index) => SkeletonLoaderWidget(),
+                  );
+                }
                 else if (snapshot.hasError){
                   return Center(
                     child: Text("Error: ${snapshot.error}"),
@@ -87,3 +74,4 @@ class SaleSectionWidget extends StatelessWidget {
     );
   }
 }
+
