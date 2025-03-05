@@ -5,6 +5,8 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool obscureText;
+  final Widget? suffixIcon;
+  final VoidCallback? onPressIconButton;
   // final String? Function(String?)? validator;
 
   TextFieldWidget({
@@ -12,7 +14,9 @@ class TextFieldWidget extends StatelessWidget {
     required this.hintText,
     required this.controller,
     required this.keyboardType,
-    this.obscureText = false
+    this.obscureText = false,
+    this.suffixIcon,
+    this.onPressIconButton
   });
 
   @override
@@ -26,6 +30,10 @@ class TextFieldWidget extends StatelessWidget {
       decoration: InputDecoration(
         border: OutlineInputBorder(borderSide: BorderSide.none),
         hintText: hintText,
+        suffixIcon: GestureDetector(
+          onTap: onPressIconButton,
+          child: suffixIcon,
+        ),
       ),
     ),
   );  

@@ -8,7 +8,7 @@ class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     super.key, 
     required this.btn_title, 
-    required this.onSubmit
+    required this.onSubmit,
   });
 
   @override
