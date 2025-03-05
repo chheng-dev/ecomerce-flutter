@@ -6,10 +6,31 @@ import 'package:ecomerce_app/widgets/header_section_widget.dart';
 import 'package:ecomerce_app/widgets/skeleton_loader_widget.dart';
 import 'package:flutter/material.dart';
 
-class SaleSectionWidget extends StatelessWidget {
+class SaleSectionWidget extends StatefulWidget {
   SaleSectionWidget({super.key});
-    
-  final ProductController _controller = ProductController();
+
+  @override
+  State<SaleSectionWidget> createState() => _SaleSectionWidgetState();
+}
+
+class _SaleSectionWidgetState extends State<SaleSectionWidget> {
+  final ProductController _productController = ProductController();
+  late Future<List<Product>> _productFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _productFuture = _productController.getProducts();
+  }
+
+  Future<void> _refreshData() async {
+    await _productController.clearCacheProductLists(() {
+      setState(() {
+        _productFuture = _productController.getProducts(); // Trigger the update
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +49,18 @@ class SaleSectionWidget extends StatelessWidget {
             width: double.infinity,
             height: 300,
             child: FutureBuilder<List<Product>>(
-              future: _controller.getProducts(), 
+              future: _productFuture, 
               builder: (context, snapshot){
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder:
-                        (context, index) => SkeletonLoaderWidget(),
+                  return RefreshIndicator(
+                    onRefresh: _refreshData,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 5,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder:
+                          (context, index) => SkeletonLoaderWidget(),
+                    ),
                   );
                 }
                 else if (snapshot.hasError){

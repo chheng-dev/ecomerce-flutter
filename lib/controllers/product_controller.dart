@@ -11,4 +11,23 @@ class ProductController {
   Future<List<Product>> filterProductByCreatedAt() async {
     return await _productService.fetchProductByCreatedAt();
   }
+
+  // Clear cache and refresh data
+  Future<void> clearCacheProductLists(Function callback) async {
+    try {
+      await _productService.clearCache();
+      callback();
+    } catch (error){
+      throw Exception("Error clearing cache: ${error}");
+    }
+  }
+
+  Future<void> clearCacheFetchByCreatedAt(Function callback) async {
+    try {
+      await _productService.clearCacheFetchProductCreatedAt();
+      callback();
+    } catch (error) {
+      throw Exception("Error clearing cache: ${error}");
+    }
+  }
 }
