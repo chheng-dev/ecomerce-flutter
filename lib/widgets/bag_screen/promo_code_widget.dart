@@ -49,18 +49,19 @@ class PromoCodeWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PromoCodeWidget(),
-              Text(
-                "Your Promo Codes",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: ConfigConstants.fontSize1
-                ),
-              ),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: [
+                    Text(
+                      "Your Promo Codes",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: ConfigConstants.fontSize1,
+                      ),
+                    ),
+                    SizedBox(height: ConfigConstants.sizebox1),
                     BagCartWidget(),
                     BagCartWidget(),
                     BagCartWidget(),
