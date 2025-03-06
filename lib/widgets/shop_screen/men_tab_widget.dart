@@ -4,6 +4,7 @@ import 'package:ecomerce_app/widgets/shop_screen/card_main_category.dart';
 import 'package:ecomerce_app/widgets/shop_screen/list_categories_wideget.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MenTabWidget extends StatelessWidget {
   MenTabWidget({super.key});
   final List<Map<String, String>> menCategoryMainList = [
