@@ -25,6 +25,9 @@ class ProductService {
           List<Product> cacheProducts =
               cachedJson.map((json) => Product.fromJson(json)).toList();
 
+              print("cacheProducts");
+              print(cacheProducts);
+
           return cacheProducts;
         }
       }
@@ -45,50 +48,65 @@ class ProductService {
 
         return products;
       } else {
+        print("Failed to load products");
         throw Exception('Failed to load products');
       }
-    } catch (e) {
+    }
+    catch (e) {
+      print("Error: $e");
       throw Exception('Error: $e');
     }
   }
-  
-  Future<List<Product>> fetchProductByCreatedAt({ int limit = 10}) async {
+
+  Future<List<Product>> fetchProductByCreatedAt({int limit = 10}) async {
     final pref = await SharedPreferences.getInstance();
-    String? cacheData = pref.getString('cache_prodcut_created_at');
+    String? cacheData = pref.getString('cache_product_created_at');
     int? lastFetchTime = pref.getInt('last_fetch_time_created_at');
 
+    // Check if cached data exists and if it is not older than 1 hour
     if (cacheData != null && lastFetchTime != null) {
       DateTime lastFetched = DateTime.fromMillisecondsSinceEpoch(lastFetchTime);
       DateTime now = DateTime.now();
 
-      if(now.difference(lastFetched).inHours < 1) {
-
+      if (now.difference(lastFetched).inHours < 1) {
+        // Return cached data if it's within 1 hour
         final List<dynamic> cachedJson = json.decode(cacheData);
-        List<Product> cachedProducts = cachedJson.map((json) => Product.fromJson(json)).toList();
+        List<Product> cachedProducts =
+            cachedJson.map((json) => Product.fromJson(json)).toList();
 
         return cachedProducts.take(limit).toList();
       }
     }
 
-    try{
-       final response = await http.get(Uri.parse('${apiUrl}?limit=${limit}'));
-       
-       if(response.statusCode == 200) {
+    try {
+      // Fetch fresh data from the API if cache is invalid or expired
+      final response = await http.get(Uri.parse('$apiUrl?limit=$limit'));
+
+      if (response.statusCode == 200) {
         final data = json.decode(response.body);
         List<dynamic> productsJson = data['products'];
 
-        List<Product> products = productsJson.map((json) => Product.fromJson(json)).toList();
+        List<Product> products =
+            productsJson.map((json) => Product.fromJson(json)).toList();
 
-        products.sort((a,b) => b.createdAt.compareTo(a.createdAt));
+        // Sort products by creation date in descending order
+        products.sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
-        await pref.setString('cache_product_created_at', json.encode(productsJson));
-        await pref.setInt('last_fetch_time_created_at', DateTime.now().millisecondsSinceEpoch);
+        // Cache the fetched data and update the last fetch time
+        await pref.setString(
+          'cache_product_created_at',
+          json.encode(productsJson),
+        );
+        await pref.setInt(
+          'last_fetch_time_created_at',
+          DateTime.now().millisecondsSinceEpoch,
+        );
 
         return products.take(limit).toList();
-       } else {
-        throw Exception("Failed to load products22");
-       }
-    } catch(error){
+      } else {
+        throw Exception("Failed to load products from API");
+      }
+    } catch (error) {
       throw Exception("Failed to load products: $error");
     }
   }

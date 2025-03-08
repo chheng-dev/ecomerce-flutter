@@ -55,6 +55,7 @@ class CartItemWidget extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.grey.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(12)
                 ),
