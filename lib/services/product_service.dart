@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProductService {
   final String apiUrl = ApiConstants.productApi;
 
+  // GET PRODUCT LIST
   Future<List<Product>> fetchProducts() async {
     try {
       final pref = await SharedPreferences.getInstance();
@@ -37,6 +38,7 @@ class ProductService {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
 
+
         List<dynamic> productsJson = data['products'];
 
         List<Product> products =
@@ -58,6 +60,7 @@ class ProductService {
     }
   }
 
+  // FETCH PRODUCT BY CREATED AT
   Future<List<Product>> fetchProductByCreatedAt({int limit = 10}) async {
     final pref = await SharedPreferences.getInstance();
     String? cacheData = pref.getString('cache_product_created_at');
@@ -109,6 +112,43 @@ class ProductService {
     } catch (error) {
       throw Exception("Failed to load products: $error");
     }
+  }
+
+  
+  // GET PRODUCT BY ID 
+  Future<Product> getProductById({ int? productId}) async {
+    try {
+      final pref = await SharedPreferences.getInstance();
+      String? cacheData = pref.getString('cache_product_$productId');
+
+      if(cacheData != null) {
+        Product cacheProducts = _decodeProduct(cacheData);
+        return cacheProducts;
+      }
+
+      final response = await http.get(Uri.parse('${apiUrl}/${productId}'));
+
+      if (response.statusCode == 200) {
+        final productJson = json.decode(response.body);
+
+        Product product = _decodeProduct(json.encode(productJson));
+
+        await pref.setString('cache_product_$productId', json.encode(productJson));
+
+        return product;
+      }  else {
+        print("Failed to load product by ID");
+        throw Exception('Failed to load product by ID');
+      }
+    } catch (e) {
+      print("Error: $e");
+      throw Exception('Error: $e');
+    }
+  }
+
+  Product _decodeProduct(String jsonData) {
+    final decodedJson = json.decode(jsonData);
+    return Product.fromJson(decodedJson);
   }
 
   // Method to clear cache

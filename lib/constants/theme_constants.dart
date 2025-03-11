@@ -7,6 +7,8 @@ class AppColors {
   static const Color errorColor = Colors.orange;
   static const Color blackColor = Colors.black87;
   static const Color greyColor = Colors.grey;
+  static const Color lightColor = Colors.white;
+  static const Color successColor = Colors.green;
 }
 
 class AppTextStyles {
@@ -54,9 +56,11 @@ class ConfigConstants {
 
   static const double fontSize1 = 16.0;
 
-  static const double fontSize2 = 24.0;
+  static const double fontSize2 = 18.0;
 
-  static const double fontSize3 = 32.0;
+  static const double fontSize3 = 24.0;
+
+  static const double fontSize4 = 32.0;
 
   static const double sizebox0 = 12.0;
 

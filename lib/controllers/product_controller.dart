@@ -12,6 +12,10 @@ class ProductController {
     return await _productService.fetchProductByCreatedAt();
   }
 
+  Future<Product> getProductById(int id) async {
+    return _productService.getProductById(productId: id);
+  }
+
   // Clear cache and refresh data
   Future<void> clearCacheProductLists(Function callback) async {
     try {

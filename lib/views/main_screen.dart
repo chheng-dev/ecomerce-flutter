@@ -3,7 +3,6 @@ import 'package:ecomerce_app/constants/theme_constants.dart';
 import 'package:ecomerce_app/views/bag_screen.dart';
 import 'package:ecomerce_app/views/favorites_screen.dart';
 import 'package:ecomerce_app/views/home_screen.dart';
-import 'package:ecomerce_app/views/no_internet_screen.dart';
 import 'package:ecomerce_app/views/shop_screen.dart';
 import 'package:ecomerce_app/views/user_profile_screen.dart';
 import 'package:flutter/material.dart';
