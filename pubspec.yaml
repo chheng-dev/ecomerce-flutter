@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.5.2
   connectivity_plus: ^3.0.2
   provider: ^6.1.2
+  dropdown_search: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -81,10 +82,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Roboto_Condensed
+    - family: Nunito
       fonts:
-        - asset: assets/fonts/RobotoCondensed.ttf
-        - asset: assets/fonts/RobotoCondensed-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Nunito-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/Nunito-VariableFont_wght.ttf
           weight: 700
     # - family: Trajan Pro
   #     fonts:

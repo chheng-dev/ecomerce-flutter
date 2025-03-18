@@ -1,8 +1,8 @@
 import 'package:ecomerce_app/constants/theme_constants.dart';
 import 'package:ecomerce_app/controllers/product_controller.dart';
 import 'package:ecomerce_app/models/Product.dart';
-import 'package:ecomerce_app/widgets/cart_item_widget.dart';
 import 'package:ecomerce_app/widgets/header_section_widget.dart';
+import 'package:ecomerce_app/widgets/item_widget.dart';
 import 'package:ecomerce_app/widgets/skeleton_loader_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +72,8 @@ class _NewSectionWidgetState extends State<NewSectionWidget> {
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       Product product = products[index];
-                      return CartItemWidget(
+                      return ItemWidget(
+                        id: product.id,
                         title: product.title,
                         price: product.price,
                         brand: product.brand,
