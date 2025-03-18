@@ -56,15 +56,7 @@ class BannerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Fashsion",
-                style: TextStyle(
-                  fontSize: 48.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              Text(
-                "sale",
+                "Fashsion Sale",
                 style: TextStyle(
                   fontSize: 48.0,
                   color: Colors.white,

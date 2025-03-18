@@ -1,5 +1,6 @@
 import 'package:ecomerce_app/constants/theme_constants.dart';
 import 'package:ecomerce_app/widgets/bag_screen/bag_cart_widget.dart';
+import 'package:ecomerce_app/widgets/custom_drag.dart';
 import 'package:ecomerce_app/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class PromoCodeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: ConfigConstants.padding2
+        vertical: ConfigConstants.padding0
       ),
       child: TextFieldWidget(
         hintText: "Enter your promo code",
@@ -36,7 +37,7 @@ class PromoCodeWidget extends StatelessWidget {
     showModalBottomSheet(
       enableDrag: true,
       backgroundColor: AppColors.backgroundColor,
-      showDragHandle: true,
+      showDragHandle: false,
       context: context, 
       builder: (BuildContext context) {
         return Container(
@@ -46,8 +47,9 @@ class PromoCodeWidget extends StatelessWidget {
           width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.5,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              CustomDrag(),
               PromoCodeWidget(),
               Expanded(
                 child: ListView(

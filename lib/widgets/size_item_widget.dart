@@ -13,8 +13,8 @@ class SizeItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTab,
       child: Container(
-        width: 48,
-        padding: EdgeInsets.all(ConfigConstants.padding0),
+        width: 40,
+        padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(right: ConfigConstants.margin0),
         decoration: BoxDecoration(
           color: isActive ? AppColors.primaryColor 
@@ -30,7 +30,8 @@ class SizeItemWidget extends StatelessWidget {
           child: Text(
             size,
             style: TextStyle(
-              color: isActive ? AppColors.lightColor : AppColors.blackColor
+              color: isActive ? AppColors.lightColor : AppColors.blackColor,
+              fontWeight: FontWeight.bold
             ),
           ),
         ),

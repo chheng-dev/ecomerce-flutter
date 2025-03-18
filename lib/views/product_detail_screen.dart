@@ -1,7 +1,6 @@
 import 'package:ecomerce_app/constants/theme_constants.dart';
 import 'package:ecomerce_app/widgets/avalible_stock_widget.dart';
 import 'package:ecomerce_app/widgets/option_type_widget.dart';
-import 'package:ecomerce_app/widgets/related_product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecomerce_app/controllers/product_controller.dart';
