@@ -17,7 +17,7 @@ class ButtonWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(vertical: 16.0),
+          padding: EdgeInsets.symmetric(vertical: 8.0),
           elevation: 0,
           backgroundColor: AppColors.primaryColor,
         ),

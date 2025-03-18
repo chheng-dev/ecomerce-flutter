@@ -17,6 +17,7 @@ class ShopScreen extends StatelessWidget {
       length: categoryTabs.length, 
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, "/");

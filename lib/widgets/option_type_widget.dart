@@ -1,7 +1,10 @@
 import 'package:ecomerce_app/constants/theme_constants.dart';
 import 'package:ecomerce_app/models/Product.dart';
 import 'package:ecomerce_app/widgets/avalible_stock_widget.dart';
+import 'package:ecomerce_app/widgets/button.dart';
 import 'package:ecomerce_app/widgets/color_container_widget.dart';
+import 'package:ecomerce_app/widgets/custom_drag.dart';
+import 'package:ecomerce_app/widgets/outline_button.dart';
 import 'package:ecomerce_app/widgets/size_container_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -43,18 +46,20 @@ Widget _buildOptionSize(BuildContext context, Product product) {
 void _onShowModalBottomSheet(BuildContext context, Product product){
   showModalBottomSheet(
     enableDrag: true,
+    isScrollControlled: true,
     backgroundColor: AppColors.backgroundColor,
-    showDragHandle: true,
+    showDragHandle: false,
     context: context, 
     builder: (BuildContext context) {
       return Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.5,
+        height: MediaQuery.of(context).size.height * 0.6,
         child: Stack(
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                CustomDrag(),
                 _buildImagePrice(context, product),
                 SizedBox(height: ConfigConstants.sizebox2),
                 Divider(),
@@ -79,38 +84,16 @@ void _onShowModalBottomSheet(BuildContext context, Product product){
               child: Row(
                 children: [
                   Expanded(
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        elevation: 0,
-                        backgroundColor: AppColors.lightColor,
-                      ),
-                      onPressed: () => {},
-                      child: Text(
-                        "Add to Cart", style: 
-                        TextStyle(
-                          color: AppColors.blackColor, 
-                          fontWeight: FontWeight.w600
-                        )
-                      ),
-                    ),
+                    child: OutlineButton(
+                      title: "Add to Cart",
+                      onPressed: (){},
+                    )
                   ),
                   SizedBox(width: ConfigConstants.sizebox2),
                   Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        elevation: 0,
-                        backgroundColor: AppColors.primaryColor,
-                      ),
-                      onPressed: () => {},
-                      child: Text(
-                        "Buy Now",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                    child: ButtonWidget(
+                      btn_title: 'Buy Now', 
+                      onSubmit: (){}
                     ),
                   ),
                 ],

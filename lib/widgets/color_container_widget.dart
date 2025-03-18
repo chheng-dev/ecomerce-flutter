@@ -45,11 +45,11 @@ Widget _buildColorItemSection(
   bool isActive,
 ) {
   return Container(
-    padding: EdgeInsets.all(ConfigConstants.padding0),
+    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
     margin: EdgeInsets.only(right: ConfigConstants.margin0),
     decoration: BoxDecoration(
       color: isActive ? AppColors.primaryColor : AppColors.lightColor,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(10),
       border: Border.all(
         width: 1,
         color: isActive ? AppColors.primaryColor : AppColors.greyColor,
@@ -59,6 +59,7 @@ Widget _buildColorItemSection(
       child: Text(
         item["name"]!,
         style: TextStyle(
+          fontSize: ConfigConstants.fontSize0,
           fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
           color: isActive ? Colors.white : Colors.black,
         ),
