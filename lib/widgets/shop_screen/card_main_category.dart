@@ -16,7 +16,7 @@ class CardMainCategoryWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12)
       ),
       width: double.infinity,
-      height: 80.0,
+      height: 60.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

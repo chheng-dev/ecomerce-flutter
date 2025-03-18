@@ -48,7 +48,8 @@ class ShopScreen extends StatelessWidget {
                     child: Text(
                       category,
                       style: TextStyle(
-                        fontSize: 20
+                        fontSize: ConfigConstants.fontSize1,
+                        fontWeight: FontWeight.bold
                       ),
                     )
                   ),
