@@ -15,7 +15,7 @@ class BagCartWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12)
       ),
       width: double.infinity,
-      height: 120,
+      height: 100,
       child: Row(
         children: [
           ClipRRect(
@@ -77,8 +77,8 @@ class BagCartWidget extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey,
-                              offset: Offset(0.1, 1.0),
-                              blurRadius: 4.0
+                              offset: Offset(0.1, 0.1),
+                              blurRadius: 1.0
                             )
                           ]
                         ),
@@ -104,8 +104,8 @@ class BagCartWidget extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey,
-                              offset: Offset(0.1, 1.0),
-                              blurRadius: 4.0
+                              offset: Offset(0.1, 0.1),
+                              blurRadius: 1.0
                             )
                           ]
                         ),
@@ -139,7 +139,7 @@ class BagCartWidget extends StatelessWidget {
                     "\$55",
                     style: TextStyle(
                       fontSize: ConfigConstants.fontSize2,
-                      fontWeight: FontWeight.w600
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                 )

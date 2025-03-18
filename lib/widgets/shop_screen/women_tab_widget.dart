@@ -52,7 +52,7 @@ class WomenTabWidget extends StatelessWidget {
           // Summer sales
           Container(
             alignment: Alignment.center,
-            height: MediaQuery.of(context).size.height * 0.15,
+            height: MediaQuery.of(context).size.height * 0.1,
             decoration: BoxDecoration(
               color: AppColors.primaryColor,
               borderRadius: BorderRadius.circular(12)
